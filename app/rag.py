@@ -78,5 +78,9 @@ Question:
 
     return {
         "answer": response.output_text,
-        "sources": sources
+        "sources": sources,
+        "retrieved_docs": results,
+        "input_tokens": response.usage.input_tokens,
+        "output_tokens": response.usage.output_tokens,
+        "total_tokens": response.usage.total_tokens,
     }
