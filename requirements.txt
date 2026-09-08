@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+openai
+python-dotenv
+
+psycopg[binary]
+pgvector
+
+langchain-openai
+langchain-community
+langchain-text-splitters
+pypdf
+
+pandas
+numpy
+requests
+tqdm

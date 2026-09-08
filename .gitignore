@@ -1,0 +1,21 @@
+# Virtual environment
+.venv/
+
+# Secrets
+.env
+
+# Dataset repository
+RAG-Evaluation-Dataset-KO/
+
+# Jupyter notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# Data
+data/raw/
+data/processed/
+data/results/
+
+# Python cache
+__pycache__/
+*.pyc
