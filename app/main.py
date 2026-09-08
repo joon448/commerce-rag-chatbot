@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from app.rag import generate_rag_answer
@@ -42,6 +42,22 @@ def root():
     response_model=AskResponse
 )
 def ask(request: AskRequest):
-    return generate_rag_answer(
-        question=request.question
-    )
+    try:
+        if not request.question.strip():
+            raise HTTPException(
+                status_code=400,
+                detail="질문을 입력해주세요."
+            )
+
+        return generate_rag_answer(
+            question=request.question
+        )
+
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail="답변 생성 중 오류가 발생했습니다."
+        )
