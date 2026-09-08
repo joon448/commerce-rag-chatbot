@@ -1,10 +1,9 @@
 import os
-
 from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings
 
-from app.database import get_connection
-
+from app.database import pool
+from pgvector.psycopg import register_vector
 
 load_dotenv()
 
@@ -19,7 +18,9 @@ TABLE_NAME = "document_chunks_1500"
 def retrieve(question: str, top_k: int = 5):
     query_vector = embeddings.embed_query(question)
 
-    with get_connection() as conn:
+    with pool.connection() as conn:
+        register_vector(conn)
+
         with conn.cursor() as cur:
             cur.execute(
                 f"""
