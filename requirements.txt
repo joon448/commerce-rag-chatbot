@@ -4,6 +4,7 @@ openai
 python-dotenv
 
 psycopg[binary]
+psycopg-pool
 pgvector
 
 langchain-openai
